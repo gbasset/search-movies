@@ -1,23 +1,27 @@
 body {
-    background-color:rgb(31, 29, 29);
+    background-color:#7070db;
 }
 
 .search_bar {
     margin-top:2.5em;
     margin-bottom:2.5em;
+    
+}
+.form-control.input-lg{
+    background-color: #ebebfa;
 }
 .media-body{
     color: white;
 }
 li:hover{
-    background-color: rgba(68, 65, 65, 0.945);
+    background-color: #c2c2f0;
     border:1px solid rgb(255, 0, 0);
     border-bottom:2px solid rgb(255, 0, 0);
-    color:rgb(255, 255, 13);
     cursor: pointer;
 }
 .media-body:hover{
-    color:rgb(255, 255, 13);
+    color: #7070db;
+    font-style: oblique;
 }
 .title-list-item{
    
@@ -26,17 +30,20 @@ li:hover{
 }
 .list-group-item{
     padding:0.4em;
-    background-color: rgb(0, 0, 0);
-    border-color:grey;
+    background-color: rgb(54, 53, 155);
+    border-color:#ebebfa;
+    box-shadow: 1px 5px 5px #000000;
 }
 .navigationList{
     padding-left:0px;
     
 }
 .col-md-8{
-    background-color: rgb(0, 0, 0);
+    background-color: rgb(29, 28, 119);
     padding-top: 1em;
     border-radius:0.4em;
+    box-shadow: 1px 5px 5px rgb(22, 21, 21);
+
 }
 
 .para{
@@ -51,8 +58,15 @@ li:hover{
 .description{
     color:white;
     font-size: 1.8vh;
+    text-align:justify;
 }
 .description, h1{
     color:rgb(223, 223, 223);
 }
 
+.Affichefilm{
+    margin-left:10%;
+    margin-right:10%;
+}
+.textfilm{
+text-align: center;}

@@ -14,7 +14,7 @@ class SearchBar extends React.Component {
 
         return (
             <div className='row'>
-                <div className='col-md-10 input-group '>
+                <div className='col-md-12 input-group '>
                     <input type='text' className='form-control input-lg' onChange={this.handleChange} placeholder={this.state.placeHolder} />
                     {/* <p> {this.state.searchText} </p> */}
                     <span className="input-group-btn">
@@ -31,15 +31,15 @@ class SearchBar extends React.Component {
 
     handleChange = (event) => {
         this.setState({ searchText: event.target.value });
-        if(!this.state.lockRequest){
-            this.setState({lockRequest:true})
-            setTimeout(()=>{this.search()}, this.state.intervalBeforeRequest )
+        if (!this.state.lockRequest) {
+            this.setState({ lockRequest: true })
+            setTimeout(() => { this.search() }, this.state.intervalBeforeRequest)
         }
     }
 
     search() {
         this.props.callback(this.state.searchText);
-        this.setState({lockRequest:false})
+        this.setState({ lockRequest: false })
         console.log('click');
     }
 
