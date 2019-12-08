@@ -4,11 +4,13 @@ import SearchBar from '../components/SearchBar'
 import VideoDetail from '../components/VideoDetails'
 import VideoList from './VideoList'
 import Video from '../components/Video'
+
 import './App.css'
 
 const API_END_POINT = "https://api.themoviedb.org/3/"
 const POPULAR_MOVIES_URL = "discover/movie?language=fr&sort_by=popularity.desc&include_adult=false&append_to_response=images"
 const API_KEY = "api_key=64194ae703e2630dd0d31d51af95795c"
+const SEARCH_URL = "search/movie?language=frinclude_adult=false"
 
 class App extends React.Component {
 
@@ -22,8 +24,6 @@ class App extends React.Component {
         this.initMovies()
     }
 
-
-
     initMovies = () => {
         axios
             .get(`${API_END_POINT}${POPULAR_MOVIES_URL}&${API_KEY}`)
@@ -36,8 +36,29 @@ class App extends React.Component {
                 })
             )   
     }
+    onclickSearch=(searchText) => {
+        if(searchText){
+            axios
+            .get(`${API_END_POINT}${SEARCH_URL}&${API_KEY}&query=${searchText}&language=fr&include_adult=false`)
+            .then(response => {
+                if(response.data && response.data.results[0]){
+                    if(response.data.results[0].id !=this.state.currentMovie.id) {
+                        this.setState({currentMovie:response.data.results[0]}, () => {
+                            this.applyVideoToCurrentMovie();
+                            this.setRecommandation();
+                            this.initMovies()
+                        })
+                    }
+                }
 
-
+                else{ 
+                    alert('Nous  ne parvenons pas à trouver ce film, essayer de le chercher en anglais')
+                }
+          
+            })
+            
+        }        
+    }
     applyVideoToCurrentMovie = () => {
         axios
         .get(`${API_END_POINT}movie/${this.state.currentMovie.id}?${API_KEY}&append_to_response=videos&include_adult=false`)
@@ -49,9 +70,22 @@ class App extends React.Component {
             
         })}
            
-    recieveCallback = (movie) => {
-        this.setState({ currentMovie: movie },function (){this.applyVideoToCurrentMovie()})
+    onClickrecieveCallback = (movie) => {
+        this.setState({ currentMovie: movie },function ()
+        {this.applyVideoToCurrentMovie()})
+        this.setRecommandation();
     }
+
+    setRecommandation=() =>{
+        axios
+        .get(`${API_END_POINT}movie/${this.state.currentMovie.id}/recommendations?&${API_KEY}&language=fr `)
+        .then(response =>
+            this.setState({
+                movieList: response.data.results.slice(0, 20),
+            })
+        )   
+    }
+
 
     render() {
         const renderVideoList = () => {
@@ -65,7 +99,7 @@ class App extends React.Component {
         return (
             <div>
                 <div className='search_bar'>
-                    <SearchBar />
+                    <SearchBar callback={this.onclickSearch}/>
                 </div>
 
                 <div className='row'>
@@ -76,11 +110,12 @@ class App extends React.Component {
                             <VideoDetail title={this.state.currentMovie.title} dateSortie={this.state.currentMovie.release_date} description={this.state.currentMovie.overview} />
                         </div>
                     </div>
-                    <div className='col-md-4'>
-                        <VideoList movieList={this.state.movieList} callback={this.recieveCallback} />
-                    </div>
-                </div>
 
+                    <div className='col-md-4'>
+                        <VideoList movieList={this.state.movieList} callback={this.onClickrecieveCallback} />
+                    </div>
+
+                </div>
 
 
             </div>
