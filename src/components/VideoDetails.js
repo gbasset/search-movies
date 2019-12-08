@@ -2,7 +2,7 @@ import React from 'react'
 
 
 
-const VideoDetail = ({ title, description, dateSortie, note, img,titleOrigin }) => {
+const VideoDetail = ({ title, description, dateSortie, note, img,titleOrigin, }) => {
     return (
         <div className='textfilm'>
             <h1> {title}</h1>

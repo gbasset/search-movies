@@ -11,7 +11,7 @@ const API_END_POINT = "https://api.themoviedb.org/3/"
 const POPULAR_MOVIES_URL = "discover/movie?language=fr&sort_by=popularity.desc&include_adult=false&append_to_response=images"
 const API_KEY = "api_key=64194ae703e2630dd0d31d51af95795c"
 const SEARCH_URL = "search/movie?language=frinclude_adult=false"
-const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500/"
+const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500/"///kc3M04QQAuZ9woUvH3Ju5T7ZqG5.jpg"
 
 class App extends React.Component {
 
@@ -24,7 +24,6 @@ class App extends React.Component {
 
     componentDidMount() {
         this.initMovies()
-        this.cast()
         
     }
 
@@ -95,8 +94,9 @@ class App extends React.Component {
     }
 
     onClickrecieveCallback = (movie) => {
-        this.setState({ currentMovie: movie }, function () { this.applyVideoToCurrentMovie() })
-        this.setRecommandation();
+        this.setState({ currentMovie: movie }, function () { this.applyVideoToCurrentMovie() 
+        this.setRecommandation()
+        this.cast()})
     }
 
     setRecommandation = () => {
@@ -141,7 +141,7 @@ class App extends React.Component {
                 </div>
 
                 <div className='row'>
-                    <div className='col-md-8'>
+                    <div className='col-md-8 movie'>
 
                         <Video videoId={this.state.currentMovie.videoId} />
                         <div className='detail'>

@@ -1,5 +1,5 @@
 body {
-    background-color:#7070db;
+    background-color:#2a2727;
 }
 
 .search_bar {
@@ -8,19 +8,19 @@ body {
     
 }
 .form-control.input-lg{
-    background-color: #ebebfa;
+    background-color: #050505;
 }
 .media-body{
     color: white;
 }
 li:hover{
-    background-color: #c2c2f0;
+    background-color: #eb0808;
     border:1px solid rgb(255, 0, 0);
     border-bottom:2px solid rgb(255, 0, 0);
     cursor: pointer;
 }
 .media-body:hover{
-    color: #7070db;
+    color: #000000;
     font-style: oblique;
 }
 .title-list-item{
@@ -28,21 +28,26 @@ li:hover{
     padding-top:0.7em;
     text-align: center;
 }
+.list-group-item, li{
+    margin-top:1em;
+}
 .list-group-item{
     padding:0.4em;
-    background-color: rgb(54, 53, 155);
-    border-color:#ebebfa;
-    box-shadow: 1px 5px 5px #000000;
+    background-color: rgb(27, 27, 29);
+    border:none;
+    /* border-color:#ff0606; */
+    box-shadow: 2px 5px 5px #000000;
 }
 .navigationList{
     padding-left:0px;
     
 }
-.col-md-8{
-    background-color: rgb(29, 28, 119);
+.col-md-8.movie{
+    background-color: rgb(31, 31, 31);
     padding-top: 1em;
     border-radius:0.4em;
-    box-shadow: 1px 5px 5px rgb(22, 21, 21);
+    box-shadow: 2px 5px 5px rgb(22, 21, 21);
+    /* border: 1px solid #ff0606; */
 
 }
 
