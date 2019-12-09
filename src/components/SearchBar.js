@@ -3,7 +3,7 @@ import React from 'react';
 class SearchBar extends React.Component {
     state = {
         searchText: "",
-        placeHolder: "Rechercher un film ... ",
+        placeHolder: "Rechercher un film  ",
         intervalBeforeRequest: 5000,
         lockRequest: false,
     };

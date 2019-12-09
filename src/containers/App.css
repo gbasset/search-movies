@@ -1,5 +1,10 @@
+
+
 body {
     background-color:#2a2727;
+    font-family: 'Roboto Mono', monospace;
+
+
 }
 
 .search_bar {
@@ -8,7 +13,9 @@ body {
     
 }
 .form-control.input-lg{
-    background-color: #050505;
+    background-color: #35353580;
+    color: #eb0808;
+    border-color: #eb0808; 
 }
 .media-body{
     color: white;
@@ -75,3 +82,7 @@ li:hover{
 }
 .textfilm{
 text-align: center;}
+.titlerecomandations{
+    text-align: center;
+    color:red;
+}

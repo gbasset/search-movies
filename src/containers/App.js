@@ -19,11 +19,17 @@ class App extends React.Component {
         movieList: [],
         currentMovie: {},
         casting: [],
+        salles: ['zizi'],
+        genres: [],
+        video: [],
     }
 
 
     componentDidMount() {
         this.initMovies()
+        this.nowPlaying()
+        this.genres()
+        this.videos()
         
     }
 
@@ -38,7 +44,7 @@ class App extends React.Component {
                 }, function () {
                     this.applyVideoToCurrentMovie()
                     this.cast()
-                    
+                    this.videos()
 
                 })
 
@@ -57,7 +63,8 @@ class App extends React.Component {
                             this.setState({ currentMovie: response.data.results[0] }, () => {
                                 this.applyVideoToCurrentMovie();
                                 this.setRecommandation();
-                                this.cast()
+                                this.cast();
+                                this.videos()
                                 
 
                             })
@@ -96,7 +103,8 @@ class App extends React.Component {
     onClickrecieveCallback = (movie) => {
         this.setState({ currentMovie: movie }, function () { this.applyVideoToCurrentMovie() 
         this.setRecommandation()
-        this.cast()})
+        this.cast()
+        this.videos()})
     }
 
     setRecommandation = () => {
@@ -115,16 +123,54 @@ class App extends React.Component {
             // https://api.themoviedb.org/3/movie/150540?api_key=64194ae703e2630dd0d31d51af95795c&append_to_response=credits
             .then(response =>
                 this.setState({
-                    casting: response.data.cast
+                    casting: response.data
                 })              
             )
 
     }
 
+    nowPlaying =() => {
+         axios.get(`${API_END_POINT}movie/now_playing?${API_KEY}&language=fr&page=1`)
+        //https://api.themoviedb.org/3/movie/now_playing?api_key=64194ae703e2630dd0d31d51af95795c&language=en-US&page=1
+        //https://api.themoviedb.org/3/movie/now_playing?api_key=64194ae703e2630dd0d31d51af95795c&language=fr&page=1`
+        .then(response =>
+            this.setState({
+                salles: response.data.results
+            })              
+        )
+        
+    }
+ 
+    genres =() => {
+        axios.get(`genre/movie/list?${API_KEY}&language=fr`)
+       //   https://api.themoviedb.org/3/genre/movie/list?api_key=<<api_key>>&language=en-US
+      
+       .then(response =>
+           this.setState({
+               genres: response.data.genres
+           })              
+       )
+       
+   }
+   videos =() => {
+    axios.get(`${API_END_POINT}movie/${this.state.currentMovie.id}/videos?${API_KEY}&language=en-US`)
+    // ${API_END_POINT}movie/${this.state.currentMovie.id}${API_KEY}&language=en-US
     
+   //  https://api.themoviedb.org/3/movie/330457/videos?api_key=64194ae703e2630dd0d31d51af95795c&language=en-US
+  //https://api.themoviedb.org/3/movie/330457/videos?api_key=64194ae703e2630dd0d31d51af95795c&language=fr
+   .then(response =>
+       this.setState({
+           video: response.data.results
+       })              
+   )
+   
+}
+  // https://api.themoviedb.org/3/movie/{movie_id}/videos?api_key=<<api_key>>&language=en-US
     render() {
     console.log('casting',this.state.casting);
-    
+    console.log('salles',this.state.salles);
+    console.log('genres',this.state.genres);
+    console.log('video',this.state.video);
         const renderVideoList = () => {
             if (this.state.movieList.length >= 5) {
                 return <VideoList movieList={this.state.movieList} />
@@ -150,6 +196,7 @@ class App extends React.Component {
                     </div>
 
                     <div className='col-md-4'>
+                    <h4 className='titlerecomandations'>Laissez vous tenter</h4>
                         <VideoList movieList={this.state.movieList} callback={this.onClickrecieveCallback} />
                     </div>
 
