@@ -51,8 +51,7 @@ class App extends React.Component {
             )
     }
 
-    
-
+    S
     onclickSearch = (searchText) => {
         if (searchText) {
             axios
@@ -142,8 +141,8 @@ class App extends React.Component {
     }
  
     genres =() => {
-        axios.get(`genre/movie/list?${API_KEY}&language=fr`)
-       //   https://api.themoviedb.org/3/genre/movie/list?api_key=<<api_key>>&language=en-US
+        axios.get(`${API_END_POINT}genre/movie/list?${API_KEY}&language=fr`)
+       //   https://api.themoviedb.org/3/genre/movie/list?api_key=64194ae703e2630dd0d31d51af95795c&language=en-US
       
        .then(response =>
            this.setState({
