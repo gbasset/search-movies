@@ -4,7 +4,7 @@ import SearchBar from '../components/SearchBar'
 import VideoDetail from '../components/VideoDetails'
 import VideoList from './VideoList'
 import Video from '../components/Video'
-
+import CastingList from '../containers/CastingList'
 import './App.css'
 
 const API_END_POINT = "https://api.themoviedb.org/3/"
@@ -19,6 +19,7 @@ class App extends React.Component {
         movieList: [],
         currentMovie: {},
         casting: [],
+        castingdirection: [],
         salles: ['zizi'],
         genres: [],
         video: [],
@@ -30,7 +31,7 @@ class App extends React.Component {
         this.nowPlaying()
         this.genres()
         this.videos()
-        
+
     }
 
     initMovies = () => {
@@ -51,7 +52,7 @@ class App extends React.Component {
             )
     }
 
-    S
+
     onclickSearch = (searchText) => {
         if (searchText) {
             axios
@@ -64,7 +65,7 @@ class App extends React.Component {
                                 this.setRecommandation();
                                 this.cast();
                                 this.videos()
-                                
+
 
                             })
                         }
@@ -100,10 +101,12 @@ class App extends React.Component {
     }
 
     onClickrecieveCallback = (movie) => {
-        this.setState({ currentMovie: movie }, function () { this.applyVideoToCurrentMovie() 
-        this.setRecommandation()
-        this.cast()
-        this.videos()})
+        this.setState({ currentMovie: movie }, function () {
+            this.applyVideoToCurrentMovie()
+            this.setRecommandation()
+            this.cast()
+            this.videos()
+        })
     }
 
     setRecommandation = () => {
@@ -120,89 +123,99 @@ class App extends React.Component {
         axios
             .get(`${API_END_POINT}movie/${this.state.currentMovie.id}/credits?${API_KEY}&language=en-US&page=1`)
             // https://api.themoviedb.org/3/movie/150540?api_key=64194ae703e2630dd0d31d51af95795c&append_to_response=credits
+            .then(response =>{
+                this.setState({
+                    casting: response.data.cast.slice(0, 10)
+                }) 
+                return response
+            })
             .then(response =>
                 this.setState({
-                    casting: response.data
-                })              
+                    castingdirection: response.data.crew.slice(0, 10)
+                })
             )
 
     }
 
-    nowPlaying =() => {
-         axios.get(`${API_END_POINT}movie/now_playing?${API_KEY}&language=fr&page=1`)
-        //https://api.themoviedb.org/3/movie/now_playing?api_key=64194ae703e2630dd0d31d51af95795c&language=en-US&page=1
-        //https://api.themoviedb.org/3/movie/now_playing?api_key=64194ae703e2630dd0d31d51af95795c&language=fr&page=1`
-        .then(response =>
-            this.setState({
-                salles: response.data.results
-            })              
-        )
-        
+    nowPlaying = () => {
+        axios.get(`${API_END_POINT}movie/now_playing?${API_KEY}&language=fr&page=1`)
+            //https://api.themoviedb.org/3/movie/now_playing?api_key=64194ae703e2630dd0d31d51af95795c&language=en-US&page=1
+            //https://api.themoviedb.org/3/movie/now_playing?api_key=64194ae703e2630dd0d31d51af95795c&language=fr&page=1`
+            .then(response =>
+                this.setState({
+                    salles: response.data.results
+                })
+            )
+
     }
- 
-    genres =() => {
+
+    genres = () => {
         axios.get(`${API_END_POINT}genre/movie/list?${API_KEY}&language=fr`)
-       //   https://api.themoviedb.org/3/genre/movie/list?api_key=64194ae703e2630dd0d31d51af95795c&language=en-US
-      
-       .then(response =>
-           this.setState({
-               genres: response.data.genres
-           })              
-       )
-       
-   }
-   videos =() => {
-    axios.get(`${API_END_POINT}movie/${this.state.currentMovie.id}/videos?${API_KEY}&language=en-US`)
-    // ${API_END_POINT}movie/${this.state.currentMovie.id}${API_KEY}&language=en-US
-    
-   //  https://api.themoviedb.org/3/movie/330457/videos?api_key=64194ae703e2630dd0d31d51af95795c&language=en-US
-  //https://api.themoviedb.org/3/movie/330457/videos?api_key=64194ae703e2630dd0d31d51af95795c&language=fr
-   .then(response =>
-       this.setState({
-           video: response.data.results
-       })              
-   )
-   
-}
-  // https://api.themoviedb.org/3/movie/{movie_id}/videos?api_key=<<api_key>>&language=en-US
+            //   https://api.themoviedb.org/3/genre/movie/list?api_key=64194ae703e2630dd0d31d51af95795c&language=en-US
+
+            .then(response =>
+                this.setState({
+                    genres: response.data.genres.slice(0, 10)
+                })
+            )
+
+    }
+    videos = () => {
+        axios.get(`${API_END_POINT}movie/${this.state.currentMovie.id}/videos?${API_KEY}&language=en-US`)
+            // ${API_END_POINT}movie/${this.state.currentMovie.id}${API_KEY}&language=en-US
+
+            //  https://api.themoviedb.org/3/movie/330457/videos?api_key=64194ae703e2630dd0d31d51af95795c&language=en-US
+            //https://api.themoviedb.org/3/movie/330457/videos?api_key=64194ae703e2630dd0d31d51af95795c&language=fr
+            .then(response =>
+                this.setState({
+                    video: response.data.results
+                })
+            )
+
+    }
+    // https://api.themoviedb.org/3/movie/{movie_id}/videos?api_key=<<api_key>>&language=en-US
     render() {
-    console.log('casting',this.state.casting);
-    console.log('salles',this.state.salles);
-    console.log('genres',this.state.genres);
-    console.log('video',this.state.video);
+        console.log('casting', this.state.casting);
+        console.log('salles', this.state.salles);
+        console.log('genres', this.state.genres);
+        console.log('video', this.state.video);
+        console.log('casting2', this.state.castingdirection);
         const renderVideoList = () => {
             if (this.state.movieList.length >= 5) {
                 return <VideoList movieList={this.state.movieList} />
             }
         }
         { renderVideoList() }
-       
+
         console.log('video render with video', this.state.currentMovie);
 
         return (
-            <div>
-                <div className='search_bar'>
+            <>
+                <div className='search_bar col-sm-8 col-md-12' >
                     <SearchBar callback={this.onclickSearch} />
                 </div>
+                <div className='col-md-2 '>
+                    <h4 className='titlerecomandations'>Casting</h4>
+                    <CastingList casting={this.state.casting} />
+                </div>
 
-                <div className='row'>
-                    <div className='col-md-8 movie'>
+                <div className='col-sm-12 col-md-7 movie'>
 
-                        <Video videoId={this.state.currentMovie.videoId} />
-                        <div className='detail'>
-                            <VideoDetail title={this.state.currentMovie.title} dateSortie={this.state.currentMovie.release_date} description={this.state.currentMovie.overview} note={this.state.currentMovie.vote_average} img={`${IMAGE_BASE_URL}${this.state.currentMovie.poster_path}`} titleOrigin={this.state.currentMovie.original_title} />
-                        </div>
+                    <Video videoId={this.state.currentMovie.videoId} />
+                    <div className='detail'>
+                        <VideoDetail title={this.state.currentMovie.title} dateSortie={this.state.currentMovie.release_date} description={this.state.currentMovie.overview} note={this.state.currentMovie.vote_average} img={`${IMAGE_BASE_URL}${this.state.currentMovie.poster_path}`} titleOrigin={this.state.currentMovie.original_title} />
                     </div>
+                </div>
 
-                    <div className='col-md-4'>
+                <div className='col-md-3'>
                     <h4 className='titlerecomandations'>Laissez vous tenter</h4>
-                        <VideoList movieList={this.state.movieList} callback={this.onClickrecieveCallback} />
-                    </div>
+                    <VideoList movieList={this.state.movieList} castingdirector={this.state.castingdirector} callback={this.onClickrecieveCallback} />
+
 
                 </div>
 
 
-            </div>
+            </>
         )
     }
 

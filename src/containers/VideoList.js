@@ -5,7 +5,7 @@ import VideoListItem from '../components/VideoListItem'
 
 
 const VideoList = (props) => {
-    const {movieList} = props
+    const {movieList, castingdirector}= props
 
     return (
 
@@ -15,8 +15,10 @@ const VideoList = (props) => {
                 {movieList
                     .map(movie => {
                         return <VideoListItem key={movie.id} movie={movie} callback={recieveCallback}/>
-                    })}
-
+                    }
+                 
+                    
+                    )}
 
             </ul>
 
