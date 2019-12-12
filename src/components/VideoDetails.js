@@ -1,8 +1,9 @@
 import React from 'react'
 
+import CastingListItem from '../components/CastingListItem'
 
+const VideoDetail = ({ casting, title, description, dateSortie, note, img, titleOrigin, }) => {
 
-const VideoDetail = ({ title, description, dateSortie, note, img,titleOrigin, }) => {
     return (
         <div className='textfilm'>
             <h1> {title}</h1>
@@ -13,8 +14,9 @@ const VideoDetail = ({ title, description, dateSortie, note, img,titleOrigin, })
             <h6> Titre original: {titleOrigin} </h6>
             <div className='note'> <h5> Note du public: {note} 	&#x2B50; </h5></div>
             <div>
-            <img className="Affichefilm"  src={img} />
+                <img className="Affichefilm" src={img} />
             </div>
+
         </div>
     )
 }

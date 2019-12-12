@@ -5,6 +5,7 @@ import VideoDetail from '../components/VideoDetails'
 import VideoList from './VideoList'
 import Video from '../components/Video'
 import CastingList from '../containers/CastingList'
+import CastingListDirecting from '../containers/CastingListDirecting'
 import './App.css'
 
 const API_END_POINT = "https://api.themoviedb.org/3/"
@@ -31,6 +32,7 @@ class App extends React.Component {
         this.nowPlaying()
         this.genres()
         this.videos()
+        
 
     }
 
@@ -201,10 +203,12 @@ class App extends React.Component {
 
                 <div className='col-sm-12 col-md-7 movie'>
 
-                    <Video videoId={this.state.currentMovie.videoId} />
+                    
                     <div className='detail'>
-                        <VideoDetail title={this.state.currentMovie.title} dateSortie={this.state.currentMovie.release_date} description={this.state.currentMovie.overview} note={this.state.currentMovie.vote_average} img={`${IMAGE_BASE_URL}${this.state.currentMovie.poster_path}`} titleOrigin={this.state.currentMovie.original_title} />
+                        <VideoDetail title={this.state.currentMovie.title} dateSortie={this.state.currentMovie.release_date} description={this.state.currentMovie.overview} note={this.state.currentMovie.vote_average} img={`${IMAGE_BASE_URL}${this.state.currentMovie.poster_path}`} titleOrigin={this.state.currentMovie.original_title}  casting={this.state.casting} />
                     </div>
+                    <Video videoId={this.state.currentMovie.videoId} />
+                    <CastingListDirecting castD={this.state.castingdirection}/>
                 </div>
 
                 <div className='col-md-3'>

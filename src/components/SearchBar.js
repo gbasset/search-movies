@@ -15,7 +15,7 @@ class SearchBar extends React.Component {
         return (
             <div className='row'>
                 <div className='col-md-12 input-group text-center'>
-                    <input type='text' className='form-control text-center input-lg' onChange={this.handleChange} placeholder={this.state.placeHolder} />
+                    <input type='text' className='form-control text-center input-lg searchBar' onChange={this.handleChange} placeholder={this.state.placeHolder} />
                     {/* <p> {this.state.searchText} </p> */}
                     <span className="input-group-btn">
 

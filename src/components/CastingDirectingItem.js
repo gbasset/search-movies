@@ -3,7 +3,7 @@ import React from 'react';
 const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500/";
 
 
-const CastingListItem = ({ cast}) => {
+const CastingDirectingItem = ({ castDir}) => {
   
 
 
@@ -18,11 +18,11 @@ const CastingListItem = ({ cast}) => {
         <li className='list-group-item-casting'>
             <div className='media'>
                 <div className="media-left">
-                    <img className="media-object img-rounded cast" src={`${IMAGE_BASE_URL}${cast.profile_path}`} alt={cast.name} />
+                    <img className="media-object img-rounded cast" src={`${IMAGE_BASE_URL}${castDir.profile_path}`} alt={castDir.name} />
                 </div>
                 <div className='media-body'>
-                    <p className="card-title"> {cast.name} </p>
-                    <p>Rôle :{cast.character} </p>
+                    <p className="card-title"> {castDir.name} </p>
+                    <p>Rôle :{castDir.job} </p>
                 </div>
             </div>
 
@@ -33,4 +33,5 @@ const CastingListItem = ({ cast}) => {
 
 }
 
-export default CastingListItem;
+
+export default CastingDirectingItem;

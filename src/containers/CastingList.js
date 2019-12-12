@@ -13,8 +13,6 @@ const CastingList = (props) => {
                     .map(cast => {
                         return <CastingListItem key={cast.id} cast={cast}  callback={recieveCallback}/>
                     })}
-
-
             </ul>
 
         </div>
