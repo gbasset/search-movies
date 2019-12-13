@@ -2,6 +2,7 @@ import React from 'react';
 import VideoListItem from '../components/VideoListItem'
 
 
+// momentObject(2018-02-06T13:35:00+01:00)
 
 
 const VideoList = (props) => {
@@ -16,7 +17,6 @@ const VideoList = (props) => {
                     .map(movie => {
                         return <VideoListItem key={movie.id} movie={movie} callback={recieveCallback}/>
                     }
-                 
                     
                     )}
 

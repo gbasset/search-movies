@@ -123,7 +123,7 @@ class App extends React.Component {
 
     cast = () => {
         axios
-            .get(`${API_END_POINT}movie/${this.state.currentMovie.id}/credits?${API_KEY}&language=en-US&page=1`)
+            .get(`${API_END_POINT}movie/${this.state.currentMovie.id}/credits?${API_KEY}&language=fr&page=1`)
             // https://api.themoviedb.org/3/movie/150540?api_key=64194ae703e2630dd0d31d51af95795c&append_to_response=credits
             .then(response =>{
                 this.setState({
@@ -133,7 +133,7 @@ class App extends React.Component {
             })
             .then(response =>
                 this.setState({
-                    castingdirection: response.data.crew.slice(0, 10)
+                    castingdirection: response.data.crew.slice(0, 20)
                 })
             )
 
@@ -206,9 +206,10 @@ class App extends React.Component {
                     
                     <div className='detail'>
                         <VideoDetail title={this.state.currentMovie.title} dateSortie={this.state.currentMovie.release_date} description={this.state.currentMovie.overview} note={this.state.currentMovie.vote_average} img={`${IMAGE_BASE_URL}${this.state.currentMovie.poster_path}`} titleOrigin={this.state.currentMovie.original_title}  casting={this.state.casting} />
-                    </div>
+                    
                     <Video videoId={this.state.currentMovie.videoId} />
-                    <CastingListDirecting castD={this.state.castingdirection}/>
+                    <CastingListDirecting  castD={this.state.castingdirection}/>
+                    </div>
                 </div>
 
                 <div className='col-md-3'>

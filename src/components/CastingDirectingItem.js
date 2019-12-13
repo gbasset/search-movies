@@ -15,7 +15,8 @@ const CastingDirectingItem = ({ castDir}) => {
     return (
 
 
-        <li className='list-group-item-casting'>
+        <li className='list-group-item '>
+              
             <div className='media'>
                 <div className="media-left">
                     <img className="media-object img-rounded cast" src={`${IMAGE_BASE_URL}${castDir.profile_path}`} alt={castDir.name} />
@@ -23,6 +24,7 @@ const CastingDirectingItem = ({ castDir}) => {
                 <div className='media-body'>
                     <p className="card-title"> {castDir.name} </p>
                     <p>Rôle :{castDir.job} </p>
+                    <p> department: {castDir.department}</p>
                 </div>
             </div>
 

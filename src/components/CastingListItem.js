@@ -15,14 +15,16 @@ const CastingListItem = ({ cast}) => {
     return (
 
 
-        <li className='list-group-item-casting'>
+        <li className='list-group-item-casting mt-1 '>
+         
             <div className='media'>
                 <div className="media-left">
-                    <img className="media-object img-rounded cast" src={`${IMAGE_BASE_URL}${cast.profile_path}`} alt={cast.name} />
+                    <img className="media-object img-rounded cast " src={`${IMAGE_BASE_URL}${cast.profile_path}`} alt={cast.name} />
                 </div>
                 <div className='media-body'>
                     <p className="card-title"> {cast.name} </p>
                     <p>Rôle :{cast.character} </p>
+   
                 </div>
             </div>
 

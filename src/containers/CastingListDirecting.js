@@ -9,9 +9,10 @@ const CastingListDirecting = (props) => {
         <div>
 
             <ul className='navigationList'>
+            <h1 className='title mr-4'> Equipe technique</h1>
               {castD
                   .map(castDir => {
-                      return <CastingDirectingItem  key={castDir.credit_id}  castDir={castDir}  callback={recieveCallback} />
+                      return castDir.profile_path? <CastingDirectingItem  key={castDir.credit_id}  castDir={castDir}  callback={recieveCallback} /> : null
                   })}
             </ul>
         </div>
