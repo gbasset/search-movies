@@ -2,11 +2,11 @@ import React from 'react';
 import VideoListItem from '../components/VideoListItem'
 
 
-// momentObject(2018-02-06T13:35:00+01:00)
+
 
 
 const VideoList = (props) => {
-    const {movieList, castingdirector}= props
+    const {movieList}= props
 
     return (
 

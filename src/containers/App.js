@@ -6,6 +6,8 @@ import VideoList from './VideoList'
 import Video from '../components/Video'
 import CastingList from '../containers/CastingList'
 import CastingListDirecting from '../containers/CastingListDirecting'
+import MakingOfList from '../containers/MakingOfList'
+import Navbar from '../containers/Navbar'
 import './App.css'
 
 const API_END_POINT = "https://api.themoviedb.org/3/"
@@ -165,7 +167,6 @@ class App extends React.Component {
     videos = () => {
         axios.get(`${API_END_POINT}movie/${this.state.currentMovie.id}/videos?${API_KEY}&language=en-US`)
             // ${API_END_POINT}movie/${this.state.currentMovie.id}${API_KEY}&language=en-US
-
             //  https://api.themoviedb.org/3/movie/330457/videos?api_key=64194ae703e2630dd0d31d51af95795c&language=en-US
             //https://api.themoviedb.org/3/movie/330457/videos?api_key=64194ae703e2630dd0d31d51af95795c&language=fr
             .then(response =>
@@ -193,23 +194,26 @@ class App extends React.Component {
 
         return (
             <>
+                <Navbar />
                 <div className='search_bar col-sm-8 col-md-12' >
                     <SearchBar callback={this.onclickSearch} />
                 </div>
                 <div className='col-md-2 '>
                     <h4 className='titlerecomandations'>Casting</h4>
                     <CastingList casting={this.state.casting} />
+                    
                 </div>
 
                 <div className='col-sm-12 col-md-7 movie'>
-
                     
                     <div className='detail'>
                         <VideoDetail title={this.state.currentMovie.title} dateSortie={this.state.currentMovie.release_date} description={this.state.currentMovie.overview} note={this.state.currentMovie.vote_average} img={`${IMAGE_BASE_URL}${this.state.currentMovie.poster_path}`} titleOrigin={this.state.currentMovie.original_title}  casting={this.state.casting} />
                     
                     <Video videoId={this.state.currentMovie.videoId} />
+                    <MakingOfList video={this.state.video} videoId={this.state.currentMovie.videoId}/>
                     <CastingListDirecting  castD={this.state.castingdirection}/>
                     </div>
+                    {/* <MakingOfList video={this.state.video}/> */}
                 </div>
 
                 <div className='col-md-3'>

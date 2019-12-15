@@ -15,7 +15,7 @@ const CastingListItem = ({ cast}) => {
     return (
 
 
-        <li className='list-group-item-casting mt-1 '>
+        <li className='list-group-item  mt-1 '>
          
             <div className='media'>
                 <div className="media-left">

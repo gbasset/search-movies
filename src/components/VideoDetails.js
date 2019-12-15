@@ -1,6 +1,6 @@
 import React from 'react'
 
-import CastingListItem from '../components/CastingListItem'
+
 
 const VideoDetail = ({ casting, title, description, dateSortie, note, img, titleOrigin, }) => {
     
@@ -19,7 +19,7 @@ const VideoDetail = ({ casting, title, description, dateSortie, note, img, title
                 <h6> Titre original: {titleOrigin} </h6>
                 <h6> Date de Sortie: {SortieDate()} </h6>
                 <div className="media-left test">
-                    <img  width="120px" height="170px" className="media-object img-rounded afficheMovie" src={img} />
+                    <img  width="120px" height="170px" className="media-object img-rounded afficheMovie" src={img} alt={title}/>
                 <p className='description' > {description} </p>
             </div>
 

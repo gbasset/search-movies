@@ -4,7 +4,7 @@ const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500/";
 
 
 const VideoListItem = (props) => {
-    let {movie, castingdirector} = props;
+    let {movie} = props;
 
         
     function handleOnClick(){
