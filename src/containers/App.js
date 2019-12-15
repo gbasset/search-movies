@@ -43,7 +43,7 @@ class App extends React.Component {
             .get(`${API_END_POINT}${POPULAR_MOVIES_URL}&${API_KEY}`)
             .then(response =>
                 this.setState({
-                    movieList: response.data.results.slice(1, 10),
+                    movieList: response.data.results.slice(1, 20),
                     currentMovie: response.data.results[0],
 
                 }, function () {
@@ -118,7 +118,7 @@ class App extends React.Component {
             .get(`${API_END_POINT}movie/${this.state.currentMovie.id}/recommendations?&${API_KEY}&language=fr `)
             .then(response =>
                 this.setState({
-                    movieList: response.data.results.slice(0, 10),
+                    movieList: response.data.results.slice(0, 20),
                 })
             )
     }
@@ -129,7 +129,7 @@ class App extends React.Component {
             // https://api.themoviedb.org/3/movie/150540?api_key=64194ae703e2630dd0d31d51af95795c&append_to_response=credits
             .then(response =>{
                 this.setState({
-                    casting: response.data.cast.slice(0, 10)
+                    casting: response.data.cast.slice(0, 20)
                 }) 
                 return response
             })
@@ -138,6 +138,7 @@ class App extends React.Component {
                     castingdirection: response.data.crew.slice(0, 20)
                 })
             )
+            
 
     }
 
