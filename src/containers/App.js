@@ -23,7 +23,7 @@ class App extends React.Component {
         currentMovie: {},
         casting: [],
         castingdirection: [],
-        salles: ['zizi'],
+        salles: [],
         genres: [],
         video: [],
     }
