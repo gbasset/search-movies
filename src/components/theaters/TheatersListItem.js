@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Navbar from '../../containers/Navbar'
 const TheatersListItem = (props) => {
     let { movieTheater } = props;
     const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500/"
@@ -9,6 +9,8 @@ const TheatersListItem = (props) => {
     // }
 
     return (
+        <div>
+            <Navbar/>
         <div className="row row-cols-1 row-cols-md-3">
             <div className="col mb-2">
                 <div className="card h-100">
@@ -20,6 +22,7 @@ const TheatersListItem = (props) => {
                     </div>
                 </div>
             </div>
+        </div>
         </div>
 
 
