@@ -3,8 +3,8 @@ import React from 'react';
 const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500/";
 
 
-const CastingDirectingItem = ({ castDir}) => {
-  
+const CastingDirectingItem = ({ castDir }) => {
+
 
 
     // function handleOnClick(){
@@ -13,22 +13,23 @@ const CastingDirectingItem = ({ castDir}) => {
     // }
 
     return (
-
-
-        <li className='list-group-item '>
-              
-            <div className='media'>
+        <div className="flex-column-reverse">
+            <div className="col-sm-4 lg-4">
                 <div className="media-left">
-                    <img className="media-object img-rounded cast" src={`${IMAGE_BASE_URL}${castDir.profile_path}`} alt={castDir.name} />
+                    <div className="card img img-rounded ">
+                        <img src={`${IMAGE_BASE_URL}${castDir.profile_path}`} alt={castDir.name} className="card-img-top directing" />
+                    </div>
                 </div>
-                <div className='media-body'>
-                    <p className="card-title"> {castDir.name} </p>
-                    <p>Rôle :{castDir.job} </p>
-                    <p> department: {castDir.department}</p>
+                <div className="media-body">
+                    <h5 className="card-title">{castDir.name} </h5>
+                    <p className="card-text"> Département :{castDir.department} Rôle :{castDir.job} </p>
+
                 </div>
             </div>
 
-        </li>
+
+        </div>
+
 
 
     )

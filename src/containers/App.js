@@ -34,7 +34,7 @@ class App extends React.Component {
         this.nowPlaying()
         this.genres()
         this.videos()
-        
+
 
     }
 
@@ -127,10 +127,10 @@ class App extends React.Component {
         axios
             .get(`${API_END_POINT}movie/${this.state.currentMovie.id}/credits?${API_KEY}&language=fr&page=1`)
             // https://api.themoviedb.org/3/movie/150540?api_key=64194ae703e2630dd0d31d51af95795c&append_to_response=credits
-            .then(response =>{
+            .then(response => {
                 this.setState({
                     casting: response.data.cast.slice(0, 20)
-                }) 
+                })
                 return response
             })
             .then(response =>
@@ -138,7 +138,7 @@ class App extends React.Component {
                     castingdirection: response.data.crew.slice(0, 20)
                 })
             )
-            
+
 
     }
 
@@ -195,6 +195,7 @@ class App extends React.Component {
 
         return (
             <>
+                
                 <Navbar />
                 <div className='search_bar col-sm-8 col-md-12' >
                     <SearchBar callback={this.onclickSearch} />
@@ -202,18 +203,22 @@ class App extends React.Component {
                 <div className='col-md-2 '>
                     <h4 className='titlerecomandations'>Casting</h4>
                     <CastingList casting={this.state.casting} />
-                    
+
                 </div>
 
                 <div className='col-sm-12 col-md-7 movie'>
-                    
+
                     <div className='detail'>
-                        <VideoDetail title={this.state.currentMovie.title} dateSortie={this.state.currentMovie.release_date} description={this.state.currentMovie.overview} note={this.state.currentMovie.vote_average} img={`${IMAGE_BASE_URL}${this.state.currentMovie.poster_path}`} titleOrigin={this.state.currentMovie.original_title}  casting={this.state.casting} />
-                    
-                    <Video videoId={this.state.currentMovie.videoId} />
-                    <MakingOfList video={this.state.video} videoId={this.state.currentMovie.videoId}/>
-                    <CastingListDirecting  castD={this.state.castingdirection}/>
+                        <VideoDetail title={this.state.currentMovie.title} dateSortie={this.state.currentMovie.release_date} description={this.state.currentMovie.overview} note={this.state.currentMovie.vote_average} img={`${IMAGE_BASE_URL}${this.state.currentMovie.poster_path}`} titleOrigin={this.state.currentMovie.original_title} casting={this.state.casting} />
+
+                        <Video videoId={this.state.currentMovie.videoId} />
+                        <MakingOfList video={this.state.video} videoId={this.state.currentMovie.videoId} />
+                        
                     </div>
+                    
+                    <CastingListDirecting castD={this.state.castingdirection} />
+                    
+                   
                     {/* <MakingOfList video={this.state.video}/> */}
                 </div>
 
