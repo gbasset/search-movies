@@ -22,7 +22,6 @@ const VideoDetail = ({ casting, title, description, dateSortie, note, img, title
                     <img  width="120px" height="170px" className="media-object img-rounded afficheMovie" src={img} alt={title}/>
                 <p className='description' > {description} </p>
             </div>
-
             <div className='note'> <h5> Note du public: {note} 	&#x2B50; </h5></div>
 
         </div>

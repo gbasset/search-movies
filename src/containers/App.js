@@ -7,6 +7,7 @@ import Video from '../components/Video'
 import CastingList from '../containers/CastingList'
 import CastingListDirecting from '../containers/CastingListDirecting'
 import MakingOfList from '../containers/MakingOfList'
+import TheatersList from '../containers/theatersContainer/TheatersList'
 import Navbar from '../containers/Navbar'
 import './App.css'
 
@@ -34,7 +35,7 @@ class App extends React.Component {
         this.nowPlaying()
         this.genres()
         this.videos()
-        
+
 
     }
 
@@ -103,6 +104,15 @@ class App extends React.Component {
 
             })
     }
+    // applyVideoToCurrentMovieTheater = () => {
+    //     axios
+    //         .get(`${API_END_POINT}movie/${moviesTheaters.id}?${API_KEY}&language=eng&append_to_response=videos&include_adult=true`)
+    //         .then(response => {
+    //                 this.setState({ salles: currentMovieWithVideo });
+    //         })}
+    // il faut => recuperer chaque id de chaque film présent dans le tableau
+    // ensuite pour chaque id inserer une nouvelle ligne avec la valeur videoId
+
 
     onClickrecieveCallback = (movie) => {
         this.setState({ currentMovie: movie }, function () {
@@ -127,10 +137,10 @@ class App extends React.Component {
         axios
             .get(`${API_END_POINT}movie/${this.state.currentMovie.id}/credits?${API_KEY}&language=fr&page=1`)
             // https://api.themoviedb.org/3/movie/150540?api_key=64194ae703e2630dd0d31d51af95795c&append_to_response=credits
-            .then(response =>{
+            .then(response => {
                 this.setState({
                     casting: response.data.cast.slice(0, 20)
-                }) 
+                })
                 return response
             })
             .then(response =>
@@ -138,7 +148,7 @@ class App extends React.Component {
                     castingdirection: response.data.crew.slice(0, 20)
                 })
             )
-            
+
 
     }
 
@@ -202,17 +212,17 @@ class App extends React.Component {
                 <div className='col-md-2 '>
                     <h4 className='titlerecomandations'>Casting</h4>
                     <CastingList casting={this.state.casting} />
-                    
+
                 </div>
 
                 <div className='col-sm-12 col-md-7 movie'>
-                    
+
                     <div className='detail'>
-                        <VideoDetail title={this.state.currentMovie.title} dateSortie={this.state.currentMovie.release_date} description={this.state.currentMovie.overview} note={this.state.currentMovie.vote_average} img={`${IMAGE_BASE_URL}${this.state.currentMovie.poster_path}`} titleOrigin={this.state.currentMovie.original_title}  casting={this.state.casting} />
-                    
-                    <Video videoId={this.state.currentMovie.videoId} />
-                    <MakingOfList video={this.state.video} videoId={this.state.currentMovie.videoId}/>
-                    <CastingListDirecting  castD={this.state.castingdirection}/>
+                        <VideoDetail title={this.state.currentMovie.title} dateSortie={this.state.currentMovie.release_date} description={this.state.currentMovie.overview} note={this.state.currentMovie.vote_average} img={`${IMAGE_BASE_URL}${this.state.currentMovie.poster_path}`} titleOrigin={this.state.currentMovie.original_title} casting={this.state.casting} />
+
+                        <Video videoId={this.state.currentMovie.videoId} />
+                        <MakingOfList video={this.state.video} videoId={this.state.currentMovie.videoId} />
+                        <CastingListDirecting castD={this.state.castingdirection} />
                     </div>
                     {/* <MakingOfList video={this.state.video}/> */}
                 </div>
@@ -220,11 +230,13 @@ class App extends React.Component {
                 <div className='col-md-3'>
                     <h4 className='titlerecomandations'>Laissez vous tenter</h4>
                     <VideoList movieList={this.state.movieList} castingdirector={this.state.castingdirector} callback={this.onClickrecieveCallback} />
-
+                <div>
+                    
+                    </div>
 
                 </div>
 
-
+                <TheatersList moviesTheaters={this.state.salles} />
             </>
         )
     }
