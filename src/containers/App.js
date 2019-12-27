@@ -33,8 +33,6 @@ class App extends React.Component {
         this.initMovies()
         this.nowPlaying()
         this.genres()
-       
-
 
     }
 

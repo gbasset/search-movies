@@ -5,7 +5,7 @@ const Navbar = () => {
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light style=`background-color: #e3f2fd`">
             
-             <span className="navbar-brand mb-0 h1"><a href='http://localhost:3000/'> Accueil</a></span>
+             <span className="navbar-brand mb-0 h1"><a href='/'> Accueil</a></span>
 
         </nav>
     );
