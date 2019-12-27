@@ -33,7 +33,7 @@ class App extends React.Component {
         this.initMovies()
         this.nowPlaying()
         this.genres()
-        this.videos()
+       
 
 
     }
@@ -63,14 +63,12 @@ class App extends React.Component {
                 .get(`${API_END_POINT}${SEARCH_URL}&${API_KEY}&query=${searchText}&language=fr&include_adult=false`)
                 .then(response => {
                     if (response.data && response.data.results[0]) {
-                        if (response.data.results[0].id != this.state.currentMovie.id) {
+                        if (response.data.results[0].id !== this.state.currentMovie.id) {
                             this.setState({ currentMovie: response.data.results[0] }, () => {
                                 this.applyVideoToCurrentMovie();
                                 this.setRecommandation();
                                 this.cast();
                                 this.videos()
-
-
                             })
                         }
                     }
@@ -165,8 +163,11 @@ class App extends React.Component {
             )
 
     }
+    
+    
     videos = () => {
-        axios.get(`${API_END_POINT}movie/${this.state.currentMovie.id}/videos?${API_KEY}&language=en-US`)
+        axios.get(`${API_END_POINT}movie/${this.state.currentMovie.id}/videos?${API_KEY}`)
+
             // ${API_END_POINT}movie/${this.state.currentMovie.id}${API_KEY}&language=en-US
             //  https://api.themoviedb.org/3/movie/330457/videos?api_key=64194ae703e2630dd0d31d51af95795c&language=en-US
             //https://api.themoviedb.org/3/movie/330457/videos?api_key=64194ae703e2630dd0d31d51af95795c&language=fr
@@ -179,6 +180,7 @@ class App extends React.Component {
     }
     // https://api.themoviedb.org/3/movie/{movie_id}/videos?api_key=<<api_key>>&language=en-US
     render() {
+        console.log('currentmovieid', this.state.currentMovie.id)
         console.log('casting', this.state.casting);
         console.log('salles', this.state.salles);
         console.log('genres', this.state.genres);
