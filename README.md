@@ -1,6 +1,6 @@
 My personnal project react with the api movie db
 Link to the site:
-https://friendly-heisenberg-cb2274.netlify.com
+https://moviesearchgaetan.netlify.app/
 
 ## Available Scripts
 
