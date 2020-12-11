@@ -10,8 +10,6 @@ class SearchBar extends React.Component {
 
 
     render() {
-        console.log(this.state.searchText);
-
         return (
             <div className='row'>
                 <div className='col-md-12 input-group text-center'>
